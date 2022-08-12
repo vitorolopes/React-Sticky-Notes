@@ -10,7 +10,8 @@ const reducer = (prevState, action) => {
     case "ADD_NOTE":{
       const newState = {
         ...prevState,
-        notes: [...prevState.notes, action.payload]
+        notes: [...prevState.notes, action.payload],
+        lastNoteCreated: new Date().toTimeString().slice(0,8)
       }
       return newState
     }
@@ -55,7 +56,16 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Sticky Notes</h1>
+      <h1>Sticky Notes({state.notes.length})
+      <span>
+              {state.notes.length 
+               ?
+                `Last note created: ${state.lastNoteCreated}` 
+               : 
+                ' '
+              }
+        </span>
+      </h1>
 
       <form className="note-form" onSubmit={addNote}>
         <textarea placeholder='Create a new note ...'
