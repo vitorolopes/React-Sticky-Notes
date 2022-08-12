@@ -36,6 +36,11 @@ function App() {
     setNoteInput("")
    }
 
+   const dropNote = (e) => { 
+    e.target.style.left = `${e.pageX - 50}px`
+    e.target.style.top = `${e.pageY - 50}px`
+    }
+
   return (
     <div className="app">
       <h1>Sticky Notes</h1>
@@ -54,6 +59,8 @@ function App() {
         return(
            <div className="note" key={note.id}
                 style = {{transform:`rotate(${note.rotate}deg)`}}
+                draggable="true"
+                onDragEnd={dropNote}
            >
             <div className="close">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
